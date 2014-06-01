@@ -1,9 +1,9 @@
-dim fso: set fso = CreateObject("Scripting.FileSystemObject")
+set fso = CreateObject("Scripting.FileSystemObject")
 dim CurrentDirectory
-CurrentDirectory = fso.GetAbsolutePathName(".")
+CurrentDirectory = fso.GetParentFolderName(Wscript.ScriptFullName)
 set qv = CreateObject("QlikTech.QlikView")
 dim qvDocName
-qvDocName = fso.BuildPath(CurrentDirectory, "AutomationTest.qvw")
+qvDocName = fso.BuildPath(CurrentDirectory, "..\App\AutomationTest.qvw")
 set doc = qv.OpenDoc(qvDocName)
 set chart = doc.GetSheetObject("CH01")
 doc.ReloadEx 0,1
@@ -14,7 +14,7 @@ for i=0 to dim3Values.Count-1
 	curVal = dim3Values.Item(i).Text
 	doc.Fields("Dim3").Select curVal
 	qv.WaitForIdle
-	chart.ExportBiff(fso.BuildPath(CurrentDirectory,"Test_" & curVal & ".xls"))
+	chart.ExportBiff(fso.BuildPath(CurrentDirectory,"..\Output\Test_" & curVal & ".xls"))
 next
 doc.Save
 doc.CloseDoc

@@ -1,4 +1,0 @@
-<job id="Main">
-   <script language="VBScript" src="test.vbs"/>
-   <script language="VBScript" src="automation_test.vbs"/>
-</job>
