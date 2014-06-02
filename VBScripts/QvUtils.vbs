@@ -16,7 +16,7 @@ Class QlikView
   Private m_forceKill
   Private Sub Class_Initialize
     m_docName = ""
-    m_forceKill = True
+    m_forceKill = False
   End Sub
 
   Public Property Get app
@@ -31,9 +31,12 @@ Class QlikView
     docName = m_docName
   End Property
 
+  public function setDocument(ByVal docName)
+	m_docName = GetAbsolutePath(docName)
+  end function
 
   Public Function open(ByVal docName)
-    m_docName = GetAbsolutePath(docName)
+    setDocument(docName)
     if m_forceKill then
       killProcess
     end if
