@@ -8,14 +8,14 @@ with New QlikView
   .open("..\App\AutomationTest.qvw")
   set chart = .doc.GetSheetObject("CH01")
   .doc.ReloadEx 0,1
-  .doc.Fields("Dim3").Clear
-  set dim3Values = .doc.Fields("Dim3").GetPossibleValues()
+  .doc.Fields("Year").Clear
+  set yearValues = .doc.Fields("Year").GetPossibleValues()
   dim curVal
-  for i=0 to dim3Values.Count - 1
-    curVal = dim3Values.Item(i).Text
-    .doc.Fields("Dim3").Select curVal
+  for i=0 to yearValues.Count - 1
+    curVal = yearValues.Item(i).Text
+    .doc.Fields("Year").Select curVal
     .app.WaitForIdle
-    chart.ExportBiff(GetAbsolutePath("..\Output\Test_" & curVal & ".xls"))
+    chart.ExportBiff(GetAbsolutePath("..\Output\Report_" & curVal & ".xls"))
   next
   .doc.Save
   .doc.CloseDoc
