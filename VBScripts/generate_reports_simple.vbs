@@ -6,16 +6,13 @@ dim qvDocName
 qvDocName = fso.BuildPath(CurrentDirectory, "..\App\AutomationTest.qvw")
 set doc = qv.OpenDoc(qvDocName)
 set chart = doc.GetSheetObject("CH01")
-doc.ReloadEx 0,1
-doc.Fields("Dim3").Clear
-set dim3Values=doc.Fields("Dim3").GetPossibleValues
+doc.Fields("Year").Clear
+set yearValues=doc.Fields("Year").GetPossibleValues
 dim curVal
-for i=0 to dim3Values.Count-1
-	curVal = dim3Values.Item(i).Text
-	doc.Fields("Dim3").Select curVal
-	qv.WaitForIdle
-	chart.ExportBiff(fso.BuildPath(CurrentDirectory,"..\Output\Test_" & curVal & ".xls"))
+for i=0 to yearValues.Count-1
+	curVal = yearValues.Item(i).Text
+	doc.Fields("Year").Select curVal
+	chart.ExportBiff(fso.BuildPath(CurrentDirectory,"..\Output\Report_" & curVal & ".xls"))
 next
-doc.Save
 doc.CloseDoc
 qv.Quit
