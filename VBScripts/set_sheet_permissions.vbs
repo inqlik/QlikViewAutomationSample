@@ -13,7 +13,6 @@ with New QlikView
 	.open(WScript.Arguments(0))
 	for i = 0 to .doc.NoOfSheets - 1
 	  set sheet = .doc.GetSheet(i)
-	  WScript.Echo sheet.GetProperties.Name
 	  set sp=sheet.GetProperties
 	  sp.UserPermissions.CopyCloneSheetObject = false
 	  sp.UserPermissions.AccessSheetProperties = false

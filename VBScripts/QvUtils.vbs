@@ -10,7 +10,7 @@ end function
 
 Class QlikView
   Private m_App
-  Private m_Doc1
+  Private m_Doc
   Private m_docName
   Private Sub Class_Initialize
     m_docName = ""
